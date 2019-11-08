@@ -1,16 +1,16 @@
 #!/usr/bin/python3
 
-import sys
-import os
-import fnmatch
+from sys import argv
+from os import walk, path
+from fnmatch import fnmatch
 from shutil import move
 
-rootDir = sys.argv[1]
+rootdir = argv[1]
 
-for root, dirs, files in os.walk(rootDir):
+for root, dirs, files in walk(rootdir):
     for filename in files:
-        if fnmatch.fnmatch(filename, '*.jpg'):
-            print(f'moving {filename} to {rootDir}')
-            absolutePath = os.path.join(root, filename)
-            move(absolutePath, rootDir)
+        if fnmatch(filename, '*.jpg'):
+            print(f'moving {filename} to {rootdir}')
+            absolutepath = path.join(root, filename)
+            move(absolutepath, rootdir)
 print('done.')
